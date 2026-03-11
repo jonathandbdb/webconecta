@@ -338,4 +338,77 @@ document.addEventListener('DOMContentLoaded', () => {
     psStartAutoplay();
   }
 
+  // ─── Compare Slider (mobile only) ───
+  const compareTrack = document.querySelector('.compare-slider-track');
+  const compareSlides = document.querySelectorAll('.compare-slider-slide');
+  const compareDots = document.querySelectorAll('.compare-dot');
+
+  if (compareTrack && compareSlides.length > 0) {
+    let cmpCurrent = 0;
+    let cmpStartX = 0;
+    let cmpDragging = false;
+
+    const isMobile = () => window.innerWidth <= 991;
+
+    const cmpGoTo = (index) => {
+      if (!isMobile()) return;
+      cmpCurrent = Math.max(0, Math.min(index, compareSlides.length - 1));
+      const slideW = compareSlides[0].offsetWidth;
+      const gap = 12;
+      compareTrack.style.transform = 'translateX(-' + (cmpCurrent * (slideW + gap)) + 'px)';
+      compareDots.forEach((d, i) => d.classList.toggle('active', i === cmpCurrent));
+    };
+
+    compareDots.forEach(dot => {
+      dot.addEventListener('click', () => { cmpGoTo(parseInt(dot.dataset.slide, 10)); cmpResetAutoplay(); });
+    });
+
+    // Autoplay (ping-pong every 4s, mobile only)
+    let cmpDirection = 1;
+    let cmpAutoplayTimer = null;
+    const cmpAutoplay = () => {
+      if (!isMobile()) return;
+      const next = cmpCurrent + cmpDirection;
+      if (next >= compareSlides.length) { cmpDirection = -1; }
+      else if (next < 0) { cmpDirection = 1; }
+      cmpGoTo(cmpCurrent + cmpDirection);
+    };
+    const cmpStartAutoplay = () => {
+      cmpStopAutoplay();
+      cmpAutoplayTimer = setInterval(cmpAutoplay, 4000);
+    };
+    const cmpStopAutoplay = () => { if (cmpAutoplayTimer) { clearInterval(cmpAutoplayTimer); cmpAutoplayTimer = null; } };
+    const cmpResetAutoplay = () => { cmpStopAutoplay(); cmpStartAutoplay(); };
+    cmpStartAutoplay();
+
+    // Swipe
+    compareTrack.addEventListener('touchstart', (e) => {
+      if (!isMobile()) return;
+      cmpStartX = e.touches[0].clientX;
+      cmpDragging = true;
+    }, { passive: true });
+    compareTrack.addEventListener('touchend', (e) => {
+      if (!isMobile() || !cmpDragging) return;
+      cmpDragging = false;
+      const diff = cmpStartX - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 50) {
+        cmpGoTo(diff > 0 ? cmpCurrent + 1 : cmpCurrent - 1);
+        cmpResetAutoplay();
+      }
+    }, { passive: true });
+
+    // Reset on resize
+    window.addEventListener('resize', () => {
+      if (!isMobile()) {
+        compareTrack.style.transform = '';
+        cmpCurrent = 0;
+        cmpDirection = 1;
+        compareDots.forEach((d, i) => d.classList.toggle('active', i === 0));
+        cmpStopAutoplay();
+      } else {
+        cmpStartAutoplay();
+      }
+    });
+  }
+
 });
