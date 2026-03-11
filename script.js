@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
     counters.forEach(counter => {
       const target = parseInt(counter.getAttribute('data-count'), 10);
       if (isNaN(target)) return;
-      const duration = 2000;
+      const duration = 4000;
       const start = performance.now();
 
       const step = (now) => {
@@ -216,5 +216,63 @@ document.addEventListener('DOMContentLoaded', () => {
       event_label: 'time_on_page_45s'
     });
   }, 45000);
+
+  // ─── Testimonial Slider (horizontal slide) ───
+  const sliderTrack = document.getElementById('testimonialTrack');
+  const tSlides = document.querySelectorAll('.testimonial-slide');
+  const tDots = document.querySelectorAll('.testimonial-dot');
+  const tPrevBtn = document.querySelector('.testimonial-prev');
+  const tNextBtn = document.querySelector('.testimonial-next');
+
+  if (sliderTrack && tSlides.length > 0) {
+    let tCurrent = 0;
+    let tAutoplay;
+    let tStartX = 0;
+    let tDragging = false;
+
+    const tGoTo = (index) => {
+      tCurrent = (index + tSlides.length) % tSlides.length;
+      sliderTrack.style.transform = 'translateX(-' + (tCurrent * 100) + '%)';
+      tDots.forEach((d, i) => d.classList.toggle('active', i === tCurrent));
+    };
+
+    const tStartAutoplay = () => {
+      tAutoplay = setInterval(() => tGoTo(tCurrent + 1), 5000);
+    };
+    const tResetAutoplay = () => {
+      clearInterval(tAutoplay);
+      tStartAutoplay();
+    };
+
+    if (tPrevBtn) tPrevBtn.addEventListener('click', () => { tGoTo(tCurrent - 1); tResetAutoplay(); });
+    if (tNextBtn) tNextBtn.addEventListener('click', () => { tGoTo(tCurrent + 1); tResetAutoplay(); });
+    tDots.forEach(dot => {
+      dot.addEventListener('click', () => {
+        tGoTo(parseInt(dot.dataset.slide, 10));
+        tResetAutoplay();
+      });
+    });
+
+    // Touch / swipe support
+    const tSlider = document.getElementById('testimonialSlider');
+    if (tSlider) {
+      tSlider.addEventListener('touchstart', (e) => {
+        tStartX = e.touches[0].clientX;
+        tDragging = true;
+      }, { passive: true });
+      tSlider.addEventListener('touchend', (e) => {
+        if (!tDragging) return;
+        tDragging = false;
+        const diff = tStartX - e.changedTouches[0].clientX;
+        if (Math.abs(diff) > 50) {
+          if (diff > 0) tGoTo(tCurrent + 1);
+          else tGoTo(tCurrent - 1);
+          tResetAutoplay();
+        }
+      }, { passive: true });
+    }
+
+    tStartAutoplay();
+  }
 
 });

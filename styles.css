@@ -2,9 +2,20 @@
    CONECTA - Custom overrides for TechEdge template
    ═══════════════════════════════════════════════════════ */
 
-/* Theme color override - orange as primary action color */
+/* Paleta de marca Conecta */
 :root {
-  --theme3: #FF6B00;
+  --theme: #D94814;
+  --theme2: #D94814;
+  --theme3: #D94814;
+  --header: #0D0D0D;
+  --text: #797F81;
+  --border: #797F81;
+  --bg: #F8F5FE;
+  --black: #0D0D0D;
+}
+
+body {
+  background-color: #F2EDE4;
 }
 
 html {
@@ -13,6 +24,93 @@ html {
 
 section {
   scroll-margin-top: 80px;
+}
+
+/* ── Button colors ── */
+.main-button .theme-btn,
+.main-button .arrow-btn {
+  color: #F8F5FE;
+  transition: all 0.3s ease-in-out;
+}
+
+.main-button:hover .theme-btn,
+.main-button:hover .arrow-btn {
+  background-color: #0D0D0D !important;
+  color: #F8F5FE !important;
+  box-shadow: 0 4px 18px rgba(13, 13, 13, 0.25);
+}
+
+/* Hero ghost button (standalone .theme-btn) */
+.hero-ghost-btn {
+  background-color: #D94814 !important;
+  color: #F8F5FE !important;
+  border: none !important;
+  transition: all 0.3s ease-in-out;
+}
+
+.hero-ghost-btn:hover {
+  background-color: #0D0D0D !important;
+  color: #F8F5FE !important;
+  box-shadow: 0 4px 18px rgba(13, 13, 13, 0.25);
+}
+
+/* ── Hero fit-in-viewport adjustments ── */
+.hero-3 {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 120px 0 40px;
+}
+
+.hero-3 > .container {
+  width: 100%;
+}
+
+.hero-3 .hero-content h1 {
+  font-size: clamp(36px, 4vw, 56px);
+}
+
+.hero-3 .hero-content h6 {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.hero-3 .hero-content .main-button .theme-btn {
+  background-color: #D94814 !important;
+  border: none !important;
+  color: #F8F5FE !important;
+}
+
+.hero-3 .hero-content .main-button .arrow-btn {
+  background-color: #D94814 !important;
+}
+
+.hero-3 .hero-content .main-button:hover .theme-btn {
+  background-color: #0D0D0D !important;
+  border: none !important;
+}
+
+.hero-3 .hero-content .main-button:hover .arrow-btn {
+  background-color: #0D0D0D !important;
+}
+
+.hero-3 .hero-content .main-button {
+  margin-top: 20px;
+}
+
+@media (max-width: 1199px) {
+  .hero-3 .hero-content h1 {
+    font-size: clamp(32px, 4vw, 44px);
+  }
+}
+
+@media (max-width: 575px) {
+  .hero-3 {
+    padding: 100px 0 30px;
+  }
+  .hero-3 .hero-content h1 {
+    font-size: 28px;
+  }
 }
 
 /* ── Header logo adjustments ── */
@@ -74,7 +172,7 @@ section {
 }
 
 .offcanvas-nav ul li {
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid #797F81;
 }
 
 .offcanvas-nav ul li a {
@@ -125,7 +223,7 @@ section {
   opacity: 0;
   visibility: hidden;
   transition: all 0.3s;
-  box-shadow: 0 4px 20px rgba(255, 107, 0, 0.3);
+  box-shadow: 0 4px 20px rgba(217, 72, 20, 0.3);
 }
 
 .scroll-up.active {
@@ -154,6 +252,28 @@ section {
   }
 }
 
+/* ── Hide desktop nav and CTA button on mobile, show hamburger ── */
+@media (max-width: 1199px) {
+  .mean__menu-wrapper,
+  .header-main .mean__menu-wrapper,
+  .header-main .main-menu,
+  .header-main .main-menu ul,
+  nav#mobile-menu {
+    display: none !important;
+    visibility: hidden !important;
+  }
+  .header-right > .main-button {
+    display: none !important;
+  }
+  .header__hamburger {
+    display: block !important;
+  }
+  .header-section.header-3 .header-main {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
+
 /* ── Responsive adjustments ── */
 @media (max-width: 767px) {
   .hero-section.hero-3 .hero-content h1 {
@@ -161,5 +281,552 @@ section {
   }
   .hero-stats .row .col-auto {
     margin-bottom: 10px;
+  }
+}
+
+/* ── Hero stats big numbers ── */
+.hero-stat-number {
+  font-size: 2rem;
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 2px;
+}
+
+.hero-stat-label {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.65);
+  font-weight: 500;
+}
+
+/* ── Task 1: Igualar botón ghost con botón principal hero ── */
+.hero-ghost-btn {
+  padding: 19.5px 35px !important;
+  font-size: 18px !important;
+  font-weight: 700 !important;
+  line-height: 1 !important;
+  display: inline-flex !important;
+  align-items: center;
+  border-radius: 999px !important;
+  font-family: "Manrope", serif;
+}
+@media (max-width: 575px) {
+  .hero-ghost-btn {
+    padding: 18px 30px !important;
+    font-size: 14px !important;
+  }
+}
+
+/* ── Task 2: Hover animación tarjetas de servicios ── */
+.service-wrapper-3 .service-right-area .service-box {
+  transition: all 0.3s ease;
+}
+.service-wrapper-3 .service-right-area .service-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* ── Task 3: Jerarquía tipográfica sección Ventaja ── */
+.accent-orange {
+  color: #D94814;
+  font-weight: 700;
+}
+/* H2 adaptable en sección ventaja */
+#ventaja .section-title h2 {
+  font-size: clamp(28px, 4vw, 42px);
+  line-height: 1.25;
+}
+
+/* ── Task 4: Tarjetas de proceso con línea conectora ── */
+.process-cards-row {
+  position: relative;
+}
+.process-card-col {
+  position: relative;
+}
+.process-card-col .service-box {
+  background: var(--white, #fff);
+  border: 1px solid #CCC;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+}
+.process-card-col .service-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+  border-color: var(--theme3);
+}
+/* Línea conectora horizontal entre tarjetas */
+@media (min-width: 1200px) {
+  .process-card-col:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: -2px;
+    width: calc(var(--bs-gutter-x, 24px));
+    height: 2px;
+    background: #CCC;
+    z-index: 1;
+  }
+}
+/* En tablet: 2 columnas, línea entre pares */
+@media (min-width: 768px) and (max-width: 1199px) {
+  .process-card-col:nth-child(odd):not(:nth-last-child(1))::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: -2px;
+    width: calc(var(--bs-gutter-x, 24px));
+    height: 2px;
+    background: #CCC;
+    z-index: 1;
+  }
+}
+
+.hero-stat-secondary {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+@media (max-width: 767px) {
+  .hero-stat-number {
+    font-size: 1.6rem;
+  }
+}
+
+/* Hard-coded template color overrides */
+.section-bg-2 {
+  background-color: #0D0D0D !important;
+}
+
+.cta-counter-wrapper-3 .counter-box-items .counter-box {
+  background: #1a1a1a;
+}
+
+.service-wrapper-3 .service-right-area .service-box {
+  border-color: #797F81;
+}
+
+/* ── Task 5: FAQ sección pantalla completa ── */
+.faq-fullscreen {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+.faq-fullscreen > .container {
+  width: 100%;
+}
+.faq-fullscreen .faq-area {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.faq-fullscreen .faq-area .faq-item {
+  flex: 1 1 auto;
+}
+
+/* ── FAQ accordion card-style (imagen referencia) ── */
+.faq-fullscreen .accordion-item {
+  margin-bottom: 16px;
+  border: 1px solid #e5e5e5 !important;
+  border-radius: 14px !important;
+  overflow: hidden;
+  background: #fff;
+  transition: border-color 0.3s, border-left 0.3s;
+  border-left: 4px solid transparent !important;
+}
+.faq-fullscreen .accordion-item:has(.accordion-button:not(.collapsed)) {
+  border-left: 4px solid #D94814 !important;
+  border-color: #f0d0c0 !important;
+}
+
+/* Botón del accordion */
+.faq-fullscreen .accordion-button {
+  background: transparent !important;
+  box-shadow: none !important;
+  font-size: 17px;
+  font-weight: 600;
+  color: #1a1a1a;
+  padding: 22px 28px;
+  border-radius: 14px !important;
+  font-family: "Poppins", serif;
+}
+.faq-fullscreen .accordion-button:not(.collapsed) {
+  color: #D94814;
+  background: transparent !important;
+}
+
+/* Ocultar el icono por defecto de Bootstrap */
+.faq-fullscreen .accordion-button::after {
+  display: none !important;
+}
+
+/* Iconos +/− personalizados */
+.faq-fullscreen .accordion-button::before {
+  position: absolute;
+  right: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: "Font Awesome 6 Free", "Font Awesome 6 Pro";
+  font-weight: 900;
+  font-size: 18px;
+  transition: all 0.3s ease;
+  width: auto;
+  height: auto;
+  line-height: 1;
+  border-radius: 0;
+  background: transparent;
+  text-align: center;
+}
+.faq-fullscreen .accordion-button.collapsed::before {
+  content: "+";
+  color: #999;
+}
+.faq-fullscreen .accordion-button:not(.collapsed)::before {
+  content: "−";
+  color: #D94814;
+  font-size: 22px;
+}
+
+/* Cuerpo del accordion */
+.faq-fullscreen .accordion-body {
+  padding: 0 28px 22px 28px;
+}
+.faq-fullscreen .accordion-body p {
+  color: #555;
+  font-size: 15px;
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* ── Testimonial Slider Premium ── */
+.testimonial-slider-section {
+  overflow: hidden;
+}
+.testimonial-image-block {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  height: 100%;
+  min-height: 480px;
+}
+.testimonial-main-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 20px;
+}
+.testimonial-image-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(217,72,20,0.1) 0%, rgba(13,13,13,0.55) 100%);
+  border-radius: 20px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  padding: 30px;
+}
+.testimonial-quote-icon {
+  width: 60px;
+  opacity: 0.6;
+  filter: brightness(0) invert(1);
+}
+/* Títulos */
+.testimonial-slider-wrapper .section-title h6 {
+  color: #D94814;
+}
+.testimonial-slider-wrapper .section-title h2 {
+  color: #fff;
+  font-size: 30px;
+  line-height: 1.3;
+}
+/* Slider track - carrusel horizontal */
+.testimonial-slider {
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+}
+.testimonial-track {
+  display: flex;
+  transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform;
+}
+.testimonial-slide {
+  min-width: 100%;
+  width: 100%;
+  flex-shrink: 0;
+  box-sizing: border-box;
+}
+/* Card - más cuadrada y con espacio */
+.testimonial-card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 20px;
+  padding: 36px 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.3s, border-color 0.3s;
+}
+.testimonial-card:hover {
+  background: rgba(255,255,255,0.07);
+  border-color: rgba(217,72,20,0.2);
+}
+.testimonial-card-top {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.testimonial-stars {
+  display: flex;
+  gap: 3px;
+  margin-bottom: 20px;
+}
+.testimonial-stars i {
+  color: #D94814;
+  font-size: 15px;
+}
+.testimonial-text {
+  color: rgba(255,255,255,0.85);
+  font-size: 16px;
+  line-height: 1.8;
+  font-style: italic;
+  margin: 0;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+/* Card bottom: author + frame */
+.testimonial-card-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 28px;
+  padding-top: 22px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+.testimonial-author {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.testimonial-avatar-img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(217,72,20,0.5);
+  flex-shrink: 0;
+}
+.testimonial-author-info h6 {
+  margin: 0;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+}
+.testimonial-author-info span {
+  color: rgba(255,255,255,0.45);
+  font-size: 13px;
+}
+.testimonial-frame-icon {
+  width: 44px;
+  height: auto;
+  opacity: 0.12;
+  flex-shrink: 0;
+}
+/* Nav del slider */
+.testimonial-slider-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 28px;
+}
+.testimonial-dots {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.testimonial-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.15);
+  cursor: pointer;
+  transition: all 0.4s ease;
+  border: none;
+}
+.testimonial-dot.active {
+  background: #D94814;
+  width: 28px;
+  border-radius: 5px;
+}
+.testimonial-arrows {
+  display: flex;
+  gap: 12px;
+}
+.testimonial-arrow {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.2);
+  background: transparent;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  outline: none;
+}
+.testimonial-arrow:hover {
+  background: #D94814;
+  border-color: #D94814;
+  color: #fff;
+  transform: scale(1.05);
+}
+.testimonial-arrow:active {
+  transform: scale(0.95);
+}
+/* Responsive */
+@media (max-width: 991px) {
+  .testimonial-image-block {
+    height: 300px;
+    min-height: 300px;
+    margin-bottom: 20px;
+  }
+  .testimonial-slider-wrapper .section-title h2 {
+    font-size: 24px;
+  }
+  .testimonial-card {
+    padding: 28px 24px;
+  }
+  .testimonial-text {
+    font-size: 15px;
+  }
+}
+@media (max-width: 575px) {
+  .testimonial-image-block {
+    height: 240px;
+    min-height: 240px;
+  }
+  .testimonial-card {
+    padding: 24px 20px;
+  }
+  .testimonial-card-bottom {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .testimonial-frame-icon {
+    width: 32px;
+  }
+  .testimonial-arrow {
+    width: 40px;
+    height: 40px;
+    font-size: 14px;
+  }
+}
+
+/* ── Task 7: Tarjetas comparativas – Mejoradas ── */
+.compare-card {
+  border-radius: 20px;
+  padding: 40px 35px;
+  height: 100%;
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.compare-card--neutral {
+  background: #151515;
+  border: 1px solid rgba(121, 127, 129, 0.12);
+}
+.compare-card--neutral:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+.compare-card--neutral h4 {
+  color: #797F81;
+  font-size: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(121,127,129,0.12);
+}
+.compare-card--highlight {
+  background: linear-gradient(160deg, #1a0f08 0%, #1e1209 100%);
+  border: 2px solid rgba(217, 72, 20, 0.45);
+  box-shadow: 0 8px 40px rgba(217, 72, 20, 0.12), 0 0 60px rgba(217,72,20,0.05);
+  transform: translateY(-6px);
+}
+.compare-card--highlight:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 50px rgba(217, 72, 20, 0.2), 0 0 80px rgba(217,72,20,0.08);
+}
+.compare-card--highlight h4 {
+  font-size: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(217,72,20,0.2);
+}
+.compare-badge {
+  position: absolute;
+  top: -14px;
+  right: 24px;
+  background: #D94814;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 5px 16px;
+  border-radius: 999px;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  box-shadow: 0 4px 12px rgba(217,72,20,0.4);
+}
+.compare-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.compare-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 15px;
+  line-height: 1.5;
+}
+.compare-icon--neutral {
+  color: #555;
+  margin-top: 3px;
+  flex-shrink: 0;
+  font-size: 14px;
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(121,127,129,0.1);
+}
+.compare-icon--highlight {
+  color: #D94814;
+  margin-top: 3px;
+  flex-shrink: 0;
+  font-size: 13px;
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(217,72,20,0.12);
+}
+@media (max-width: 991px) {
+  .compare-card--highlight {
+    transform: none;
+  }
+  .compare-card--highlight:hover {
+    transform: translateY(-4px);
   }
 }
