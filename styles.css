@@ -1266,4 +1266,5 @@ section {
   .tech-marquee-track { gap: 36px; animation-duration: 20s; }
   .tech-marquee-item { font-size: 17px; }
   .tech-marquee-item i { font-size: 24px; }
+  .tech-marquee-item svg { width: 24px; height: 24px; }
 }
