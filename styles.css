@@ -1268,3 +1268,87 @@ section {
   .tech-marquee-item i { font-size: 24px; }
   .tech-marquee-item svg { width: 24px; height: 24px; }
 }
+
+/* ── Evaluador buttons ── */
+
+/* Hero: subtle text link below primary CTA */
+.hero-evaluador-link {
+  font-size: 15px;
+  color: rgba(255,255,255,.55);
+  font-family: "Manrope", sans-serif;
+}
+.hero-evaluador-link a {
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255,255,255,.3);
+  transition: all 0.3s ease;
+}
+.hero-evaluador-link a:hover {
+  color: #D94814;
+  border-bottom-color: #D94814;
+}
+.hero-evaluador-link a i {
+  font-size: 12px;
+  margin-left: 4px;
+  transition: transform 0.3s ease;
+}
+.hero-evaluador-link a:hover i {
+  transform: translateX(3px);
+}
+
+/* Inline CTA after Proceso section */
+.evaluador-inline-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 16px 34px;
+  font-size: 16px;
+  font-weight: 700;
+  font-family: "Manrope", sans-serif;
+  color: #D94814;
+  border: 2px solid #D94814;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+.evaluador-inline-btn:hover {
+  background: #D94814;
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(217,72,20,0.25);
+}
+
+/* CTA section: ghost button on dark bg */
+.cta-evaluador-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 16px 30px;
+  font-size: 16px;
+  font-weight: 700;
+  font-family: "Manrope", sans-serif;
+  color: #fff;
+  border: 2px solid rgba(255,255,255,.35);
+  border-radius: 999px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+.cta-evaluador-btn:hover {
+  border-color: #D94814;
+  color: #D94814;
+  background: rgba(217,72,20,.08);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 575px) {
+  .hero-evaluador-btn,
+  .cta-evaluador-btn {
+    padding: 14px 24px;
+    font-size: 14px;
+  }
+  .evaluador-inline-btn {
+    padding: 14px 26px;
+    font-size: 14px;
+  }
+}
