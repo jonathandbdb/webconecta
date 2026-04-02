@@ -1352,3 +1352,24 @@ section {
     font-size: 14px;
   }
 }
+
+/* ── Footer Joik Agency signature ── */
+.footer-bottom .footer-wrapper p a {
+  color: var(--text);
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+.footer-bottom .footer-wrapper p a:hover {
+  color: #D94814;
+  font-style: italic;
+}
+
+@media (max-width: 991px) {
+  .footer-bottom .footer-wrapper {
+    text-align: center;
+  }
+  .footer-bottom .footer-wrapper p {
+    width: 100%;
+  }
+}
